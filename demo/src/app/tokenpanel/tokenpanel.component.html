@@ -1,0 +1,30 @@
+<div class="header_top">
+    <div class="container mt-0">
+      <div class="row align-items-center">
+        <div class="col-md-4">
+  
+        </div>
+        <div class="col-md-4 text-center">
+          <h3>Token Genrator</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 p-2">
+    <form #SignUpForm="ngForm" (ngSubmit)="SignUpForm.form.valid && userRegistration(SignUpForm)">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name</label>
+          <input type="text" #name="ngModel" [ngModel]="ClientName" name="ClientName"  placeholder="Enter name">
+          <span class="text-danger" *ngIf="SignUpForm.submitted && name.invalid">Please enter name.</span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Mobile</label>
+          <input type="text" #mobile="ngModel" [ngModel]="MobileNo" name="MobileNo" class="form-control"  placeholder="mobile">
+          <span class="text-danger" *ngIf="SignUpForm.submitted && mobile.invalid">Please enter mobile.</span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    {{response | json}}
+  </div>
+

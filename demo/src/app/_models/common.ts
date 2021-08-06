@@ -49,6 +49,7 @@ export class UserInfo {
     Hobbies:  any[] = new Array;
     Hobbie:  string = '';
     Gender: string = '';
+    Framework: any[] = new Array;
     Class: string = '';
     Age: number=0;
     City: string='';

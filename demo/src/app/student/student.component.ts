@@ -53,6 +53,17 @@ export class StudentComponent implements OnInit {
     { name: 'Designing', value: 'Designing',isChecked:false }
   ];
 
+  FrameWorks = [
+    { name: 'Codeigniter', value: 'Codeigniter',isChecked:false },
+    { name: 'Laravel', value: 'Laravel',isChecked:false },
+    { name: 'Angular', value: 'Angular',isChecked:false },
+  ];
+
+  Gender2=[
+    { name: 'Male', value: 'Male',isChecked:false },
+    { name: 'Female', value: 'Female',isChecked:false }
+  ];
+
   Sorting = [
     { id: 'Name', name: 'Name' },
     { id: 'Age', name: 'Age' },
@@ -141,8 +152,11 @@ export class StudentComponent implements OnInit {
     };
   }
 
-  userRegistration(SignUpData:NgForm) {
-    
+  userRegistration(SignUpData:NgForm,UserInfo:UserInfo) {
+    console.log('Single Page');
+    console.log(UserInfo);
+    console.log(SignUpData.value);
+    debugger
     let userData=SignUpData.value;
     console.log(this.base64Data!=undefined?'test1':'test2');
     let hobbies=[];

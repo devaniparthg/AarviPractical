@@ -80,7 +80,8 @@
         <h5 class="modal-title" id="adddatal">Student Upload</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form #SignUpForm="ngForm" (ngSubmit)="SignUpForm.form.valid && userRegistration(SignUpForm)">
+      <form #SignUpForm="ngForm" (ngSubmit)="SignUpForm.form.valid && userRegistration(SignUpForm,UserInfo)">
+        {{SignUpForm.form.valid}}
         <div class="modal-body">
           <div class="form-group">
             <input type="hidden" #UserId="ngModel" [(ngModel)]="UserInfo.UserId" name="UserId">
@@ -108,13 +109,38 @@
           </div>
           <div class="form-group">
             <label class="form-label ps-2">Gender <span class="required-field-star">*</span></label>
-            <ng-select [items]="Gender1" [dropdownPosition]="'bottom'" [searchable]="false" [clearable]="false"
-              bindLabel="name" bindValue="id" appendTo="body" placeholder="Option" name="Gender"
-              [(ngModel)]="UserInfo.Gender" #Gender="ngModel"
-              [ngClass]="{ 'is-invalid': SignUpForm.submitted && Gender.invalid }" required>
-            </ng-select>
-            <span class="text-danger" *ngIf="SignUpForm.submitted && Gender.invalid">Please select Gender.</span>
+            <div class="form-control">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="male" name="gender" id="male" #gender="ngModel" [ngModel]="UserInfo.Gender" required>
+                <label class="form-check-label" for="male">
+                  Male
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="female" name="gender" id="female" #gender="ngModel" [ngModel]="UserInfo.Gender" required>
+                <label class="form-check-label" for="female">
+                  Female
+                </label>
+              </div>
+            </div>
+            <span class="text-danger" *ngIf="SignUpForm.submitted && gender.invalid">Please select Gender.</span>
           </div>
+
+          <div class="form-group">
+            <label class="form-label ps-2">Framework <span class="required-field-star">*</span></label>
+            <div class="form-control">
+              <div class="form-check form-check-inline" >
+                <input class="form-check-input" type="checkbox" value="Codignitor" name="framework" id="Codignitor" #framework="ngModel" [ngModel]="UserInfo.Framework[0]" required>
+                <label class="form-check-label" for="Codignitor">Codignitor</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="Angular" name="framework" id="Angular" #framework="ngModel" [ngModel]="UserInfo.Framework[1]" required>
+                <label class="form-check-label" for="Angular"> Angular</label>
+              </div>
+            </div>
+            <span class="text-danger" *ngIf="SignUpForm.submitted && framework.invalid">Please select framework.</span>
+          </div>
+          
           <div class="form-group">
             <label class="form-label ps-2">Age<span class="required-field-star">*</span></label>
             <input type="number" class="form-control" placeholder="Enter your Age" name="Age" [(ngModel)]="UserInfo.Age"
@@ -122,18 +148,18 @@
             <span class="text-danger" *ngIf="SignUpForm.submitted && Age.invalid">Please enter Age.</span>
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label class="form-label ps-2">Hobbies<span class="required-field-star">*</span></label>
             <div class="form-control">
               <div class="form-check form-check-inline " *ngFor="let item of Hobbies;let i=index">
-                <input style="margin: 10px;" type="checkbox" name="{{item.name}}" [checked]="item.isChecked"
-                  [(ngModel)]="UserInfo.Hobbies[i]">
+                <input style="margin: 10px;" type="checkbox" name="{{item.name}}"  [checked]="item.isChecked"
+                  [ngModel]="UserInfo.Hobbies[i]" required>
                 <label class="form-check-label ">{{item.name}}</label>
               </div>
             </div>
-            <span class="text-danger" *ngIf="SignUpForm.submitted && !UserInfo.Hobbies.includes(true)">Please select
+             <span class="text-danger" *ngIf="SignUpForm.submitted && !UserInfo.Hobbies.includes(true)">Please select
               Hobbies.</span>
-          </div>
+          </div> -->
           <div class="form-group">
             <label class="form-label ps-2">State <span class="required-field-star">*</span></label>
             <div class="ng-select-lg ng-select-sm ">

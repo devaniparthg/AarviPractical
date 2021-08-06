@@ -64,3 +64,25 @@ exports.UserDelete = (req, res) => {
         }
     });
 };
+
+exports.GetTokenList = (req, res) => {
+    User.GetTokenList(req.body, (error, data) => {
+        if (error!=null && error.sqlMessage!=undefined) {
+            console.log(error);
+            res.status(200).send(Common.ResFormat('0', process.env.Toaster, 'Sorry, something went wrong; please check your internet connection or try again later.', '', {}));
+        } else {
+            res.status(200).send(Common.ResFormat(data.status, process.env.Toaster, data.message, data.token, data.data));
+        }
+    });
+};
+
+exports.GenrateToken = (req, res) => {
+    User.GenrateToken(req.body, (error, data) => {
+        if (error!=null && error.sqlMessage!=undefined) {
+            console.log(error);
+            res.status(200).send(Common.ResFormat('0', process.env.Toaster, 'Sorry, something went wrong; please check your internet connection or try again later.', '', {}));
+        } else {
+            res.status(200).send(Common.ResFormat(data.status, process.env.Toaster, data.message, data.token, data.data));
+        }
+    });
+};

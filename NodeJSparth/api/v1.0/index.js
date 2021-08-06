@@ -14,4 +14,10 @@ router.post('/UserList',  User.UserList);
 router.post('/GetState',  User.GetState);
 router.post('/GetCity',  User.GetCity);
 
+
+// Token genration
+router.post('/GetTokenList',  User.GetTokenList);
+router.post('/GenrateToken',  User.GenrateToken);
+
+
 module.exports = router;
