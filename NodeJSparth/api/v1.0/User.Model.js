@@ -398,7 +398,6 @@ User.GenrateToken = async (request, callback) => {
                     bufferHour=14 
                 }
                 let findHour_index =await _.findIndex(list_data, { 'SlotHour': bufferHour  });
-                console.log(`indexid-${findHour_index}`);
                 if (findHour_index >= 0) {
                     let HourCount=list_data[findHour_index]['count'];
                     if(HourCount<36){
