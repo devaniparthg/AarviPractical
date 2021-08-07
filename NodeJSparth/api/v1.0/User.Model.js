@@ -344,8 +344,8 @@ User.GenrateToken = async (request, callback) => {
 
 
     // for right time
-    CurrentHour=04;
-    CurrentMinute=57;
+    // CurrentHour=04;
+    // CurrentMinute=57;
 
     let bufferHour=(CurrentHour+1);
     let bufferMinute=Math.ceil(CurrentMinute / 5) * 5;
