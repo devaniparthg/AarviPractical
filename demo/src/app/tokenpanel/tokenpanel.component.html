@@ -52,10 +52,11 @@
         <table datatable [dtOptions]="dtOptions" class="datatable-columns-adjust w-100">
           <thead>
             <tr>
-              <th style="width:15%">Name</th>
-              <th style="width:15%">Mobile</th>
-              <th style="width:15%">Sloat Date</th>
-              <th style="width:15%">Sloat Time</th>
+              <th style="width:10%">Name</th>
+              <th style="width:10%">Mobile</th>
+              <th style="width:10%">Sloat Date</th>
+              <th style="width:10%">Sloat Time</th>
+              <th style="width:10%">Attendee</th>
               <th style="width:40%">Token</th>
             </tr>
           </thead>
@@ -65,6 +66,7 @@
               <td>{{item.Mobile || "-"}}</td>
               <td>{{item.BookedDate || "-"}}</td>
               <td>{{item.SlotTime || "-"}}</td>
+              <td>{{item.AttendeeID || "-"}}</td>
               <td>{{item.Token || "-"}}</td>
             </tr>
           </tbody>

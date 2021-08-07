@@ -46,6 +46,7 @@ export class TokenpanelComponent implements OnInit {
       let response = resp;
       this.response=response.data;
       this.alert.showAlerts(response.message,'success');
+      SignUpData.resetForm();
       this.Datatable();
 
     });
