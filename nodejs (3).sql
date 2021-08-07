@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2021 at 04:38 PM
+-- Generation Time: Aug 06, 2021 at 07:35 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -673,6 +673,84 @@ CREATE TABLE `new_student` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `slot_booking`
+--
+
+CREATE TABLE `slot_booking` (
+  `SlotID` int(11) NOT NULL,
+  `ClientName` varchar(200) NOT NULL,
+  `Mobile` varchar(100) NOT NULL,
+  `Token` varchar(200) NOT NULL,
+  `AttendeeID` int(11) NOT NULL,
+  `SlotDate` date NOT NULL,
+  `SlotHour` int(11) NOT NULL,
+  `SlotMinute` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `slot_booking`
+--
+
+INSERT INTO `slot_booking` (`SlotID`, `ClientName`, `Mobile`, `Token`, `AttendeeID`, `SlotDate`, `SlotHour`, `SlotMinute`) VALUES
+(1, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 0),
+(2, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 0),
+(3, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 0),
+(4, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 5),
+(5, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 5),
+(6, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 5),
+(7, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 10),
+(8, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 10),
+(9, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 10),
+(10, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 15),
+(11, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 15),
+(12, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 15),
+(13, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 20),
+(14, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 20),
+(15, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 20),
+(16, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 25),
+(17, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 25),
+(18, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 25),
+(19, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 30),
+(20, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 30),
+(21, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 30),
+(22, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 35),
+(23, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 35),
+(24, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 35),
+(25, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 40),
+(26, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 40),
+(27, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 40),
+(28, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 45),
+(29, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 45),
+(30, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 45),
+(31, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 50),
+(32, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 50),
+(33, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 50),
+(34, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 14, 55),
+(35, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 14, 55),
+(36, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 14, 55),
+(37, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 15, 0),
+(38, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 15, 0),
+(39, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 15, 0),
+(40, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 15, 5),
+(41, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 15, 5),
+(42, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 15, 5),
+(43, 'Parth', '7567731684', '37e1123eecead6341931c5a3bbcec0de', 1, '2021-08-06', 15, 10),
+(44, 'Parth', '7567731684', '33a566adac91ec9b90081d12e330beb1', 2, '2021-08-06', 15, 10),
+(45, 'Parth', '7567731684', 'fa653d0b61cca9a13ab7f014a910269b', 3, '2021-08-06', 15, 10),
+(46, 'Parth', '7567731684', '315da7933cb4cd082d3c1aa100513aad', 1, '2021-08-06', 15, 15),
+(47, 'Parth', '7567731684', '03dde64ecdc64ff51f726c709271430c', 2, '2021-08-06', 15, 15),
+(48, 'parth', '123456789', '1bfcb6ab37b301871180cf98748b0f71', 3, '2021-08-06', 15, 15),
+(49, 'sefse', '233245353645', 'f2271cf45e29b25ea0ff3cab33a96028', 1, '2021-08-06', 15, 20),
+(50, '43546', 'dsfdsf', '9dcd56bb160479f6006625cff96e20b1', 2, '2021-08-06', 15, 20),
+(51, 'sdfdsf', '3535364', '7090a8ceee4618b939da3a877359dc4e', 3, '2021-08-06', 15, 20),
+(52, 'sdfdsf', '3535364', 'd071177c0ac48063d208b4b9c4539830', 1, '2021-08-06', 15, 25),
+(53, 'sdfdsf', '3535364', '1c0020eeaddc365055aee325389a1a79', 2, '2021-08-06', 15, 25),
+(54, 'sdfdsf', '3535364', '7090a8ceee4618b939da3a877359dc4e', 3, '2021-08-06', 15, 25),
+(55, 'sdfdsf', '3535364', 'd071177c0ac48063d208b4b9c4539830', 1, '2021-08-06', 15, 30);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `student`
 --
 
@@ -696,7 +774,8 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`UserId`, `StudentName`, `Class`, `Age`, `Hobbies`, `Gender`, `State`, `City`, `Pincode`, `Photo`, `Location`) VALUES
 (3, 'Abas', '2nd', '25', 'Coding,Designing', 'Male', 4030, 148859, '394101', 'Images/image_7f1eced8-e878-4a01-8284-772415512d70.png', '204-A jaimini'),
-(5, 'Parth', '1st', '24', 'Coding', 'Male', 4007, 57585, '254852', 'Images/image_355b11be-0f40-4df0-992f-24ba94224b5e.png', '204-A');
+(5, 'Parth', '1st', '24', 'Coding', 'Male', 4007, 57585, '254852', 'Images/image_355b11be-0f40-4df0-992f-24ba94224b5e.png', '204-A'),
+(6, 'Shari Hari', '1st', '11', 'Coding,Designing', 'Male', 4030, 57584, '341011', 'Images/image_b5df39a0-e40d-4f67-8072-f41e6bd5814e.png', 'new Akshardham');
 
 --
 -- Indexes for dumped tables
@@ -734,6 +813,12 @@ ALTER TABLE `new_student`
   ADD PRIMARY KEY (`UserId`);
 
 --
+-- Indexes for table `slot_booking`
+--
+ALTER TABLE `slot_booking`
+  ADD PRIMARY KEY (`SlotID`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
@@ -768,10 +853,16 @@ ALTER TABLE `new_student`
   MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `slot_booking`
+--
+ALTER TABLE `slot_booking`
+  MODIFY `SlotID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
