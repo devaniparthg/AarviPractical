@@ -364,7 +364,7 @@ User.GenrateToken = async (request, callback) => {
     let token=CurrentDate+CurrentHour+CurrentMinute;
 
     // for right time
-    CurrentHour=12;
+    CurrentHour=16;
 
 
     if(CurrentHour<17){
@@ -393,6 +393,9 @@ User.GenrateToken = async (request, callback) => {
         let assignAttendeeID;
         if(list_data!=0){
             do {
+                if(bufferHour>=13 && bufferHour<14){
+                    bufferHour=14 
+                }
                 let findHour_index =await _.findIndex(list_data, { 'SlotHour': bufferHour  });
                 if (findHour_index >= 0) {
                     let HourCount=list_data[findHour_index]['count'];
