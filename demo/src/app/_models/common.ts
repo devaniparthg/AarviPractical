@@ -13,9 +13,21 @@ export class FiltersStudentList{
     Search:string='';
 }
 
+export class FilterTokenList{
+    Sorting:string='';
+    PageNo:number=1;
+    Limit:number=15;
+    Search:string='';
+}
+
 export class StudentList{
     PageDetails:PageDetails= new PageDetails();
     List:List[]=[];
+}
+
+export class TokenList{
+    PageDetails:PageDetails= new PageDetails();
+    List:Token[]=[];
 }
 
 export class PageDetails{
@@ -40,6 +52,16 @@ export class List{
     StateID:number=0;
     CityID:number=0;
     oldfile:string='';
+}
+
+export class Token{
+    SlotID:number=0;
+    ClientName:string='';
+    Mobile:string='';
+    Token:string='';
+    AttendeeID:number=0;
+    BookedDate:string='';
+    SlotTime:string='';
 }
 
 export class UserInfo {

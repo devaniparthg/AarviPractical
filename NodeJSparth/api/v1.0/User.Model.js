@@ -252,32 +252,17 @@ User.UserDelete = async (request, callback) => {
 User.GetTokenList = async (request, callback) => {
     let where = '';
     let where_array = [];
-    let order_by = ' ORDER BY std.UserId DESC';
-    if (request.Sorting != '') {
-        if(request.Sorting=='Age'){ 
-            order_by = ' ORDER BY std.Age ASC';
-        } else if(request.Sorting=='Class'){
-            order_by = ' ORDER BY std.Class ASC';
-        } else if(request.Sorting=='Name'){
-            order_by = ' ORDER BY std.StudentName ASC';
-        }
-    }
 
-    if (request.Search!=''){
-        where += ' AND std.StudentName like ? ';
-        where_array.push(request.Search);
-    }
-
+    let order_by = ' ORDER BY SlotID DESC';
     request.PageNo = (request.PageNo > 0 ? request.PageNo : '1');
     request.Limit = ((request.Limit > 0 && request.Limit <= 50) ? request.Limit : '20');
 
-    let total_query = 'SELECT COUNT(tb.UserId) AS total FROM (SELECT std.UserId \
-        FROM student AS std \
-        INNER JOIN mst_State AS sm ON sm.StateID=std.State \
-        INNER JOIN mst_City AS ct ON ct.CityID=std.City \
+    let total_query = 'SELECT COUNT(tb.SlotID) AS total FROM (SELECT token.SlotID \
+        FROM slot_booking AS token \
         WHERE  1 ' + where + ') AS tb';
     let total_record = await sqlhelper.select(total_query, where_array, (err, res) => {
         if (err || _.size(res) <= 0) {
+            console.log(err);
             return 0;
         } else {
             return res[0]['total'];
@@ -307,10 +292,8 @@ User.GetTokenList = async (request, callback) => {
         response['message'] = 'Successfully get data';
 
         let offset = (request.PageNo * request.Limit - request.Limit);
-        let list_query = 'SELECT std.UserId,std.StudentName as Name,std.Class,std.Age,std.Hobbies as Hobbie,std.Gender,std.Photo,std.Photo as oldfile,std.Location,std.Pincode,sm.StateName,ct.CityName,std.State as State,std.City as City \
-                                FROM student AS std \
-                                INNER JOIN mst_State AS sm ON sm.StateID=std.State \
-                                INNER JOIN mst_City AS ct ON ct.CityID=std.City \
+        let list_query = 'SELECT SlotID,ClientName,Mobile,Token,AttendeeID,DATE_FORMAT(SlotDate, "%Y-%m-%d") AS BookedDate,CONCAT(SlotHour, ":", SlotMinute) AS SlotTime \
+                                FROM slot_booking  \
                           WHERE 1 ' + where + order_by + ' LIMIT ' + offset + ', ' + request.Limit;
         let list_data = await sqlhelper.select(list_query, where_array, (err, res) => {
             if (err || _.size(res) <= 0) {
