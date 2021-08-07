@@ -349,34 +349,37 @@ User.GenrateToken = async (request, callback) => {
         'status': '1',
         'token': request.Token,
     };
-    let item = [].constructor(36);
-    for (let index = 0; index < item.length; index++) {
-        item[index] = (index+1);
-    }
+   
 
-    let minuteArray=_.chunk(item,3);
-
+    
     let CurrentDateTime=moment().format();
     let CurrentDate=moment(CurrentDateTime).format('YYYY-MM-DD');
     let CurrentHour=parseInt(moment(CurrentDateTime).format('HH'));
-    let CurrentMinute=parseInt(moment(CurrentDateTime).format('mm'));
-
+    let CurrentMinute=parseInt(moment(CurrentDateTime).format('m'));
+    
     let token=CurrentDate+CurrentHour+CurrentMinute;
 
+
     // for right time
-    CurrentHour=16;
+    CurrentHour=04;
+    CurrentMinute=57;
+
+    let bufferHour=(CurrentHour+1);
+    let bufferMinute=Math.ceil(CurrentMinute / 5) * 5;
+    if(bufferMinute==60){
+        bufferMinute=0;
+        bufferHour=(bufferHour+1);
+    }
 
 
-    if(CurrentHour<17){
-        if(CurrentHour<8){
-            CurrentHour = 7;
-        }else if(CurrentHour>=12 && CurrentHour<13){
-            CurrentHour = 13;
+    if(bufferHour<18){
+        if(bufferHour<9){
+            bufferHour = 9;
+        }else if(bufferHour>=13 && bufferHour<14){
+            bufferHour = 14;
         }
 
-        let bufferHour=(CurrentHour+1);
-
-        let list_query = 'SELECT COUNT(SlotID) as count,SlotHour FROM `slot_booking` where 1 group by SlotHour' ;
+        let list_query = 'SELECT COUNT(SlotID) as count,SlotHour,GROUP_CONCAT(`SlotMinute`) as Minutes FROM `slot_booking` where 1 group by SlotHour' ;
         let list_data = await sqlhelper.select(list_query, [bufferHour], (err, res) => {
             if (err || _.size(res) <= 0) {
                 console.log(err);
@@ -386,8 +389,6 @@ User.GenrateToken = async (request, callback) => {
             }
         });
 
-        console.log('list Data');
-        console.log(list_data);
         let assignHour=0;
         let assignMinute;
         let assignAttendeeID;
@@ -397,36 +398,48 @@ User.GenrateToken = async (request, callback) => {
                     bufferHour=14 
                 }
                 let findHour_index =await _.findIndex(list_data, { 'SlotHour': bufferHour  });
+                console.log(`indexid-${findHour_index}`);
                 if (findHour_index >= 0) {
                     let HourCount=list_data[findHour_index]['count'];
                     if(HourCount<36){
-                        HourCount=HourCount+1;
-                        assignHour=bufferHour;
-                        let AttendeeID=(HourCount % 3);
-                        assignAttendeeID=AttendeeID==0?3:AttendeeID;
-                        for (let index = 0; index < minuteArray.length; index++) {
-                            const element = minuteArray[index];
-                            if(element.includes(HourCount)){
-                                assignMinute=(index * 5);
+                        // Minute logic start
+                        let minutesTemp=list_data[findHour_index]['Minutes'];
+
+                        do {
+                            let AllocateMin=Math.ceil(bufferMinute / 5) * 5;
+                            var rgxp = new RegExp(AllocateMin, "g");
+                            let bookedSloat=(minutesTemp.match(rgxp) || []).length;
+
+                            if(bookedSloat<3){
+                                bookedSloat=bookedSloat+1;
+                                let AttendeeID=(bookedSloat % 3);
+
+                                assignHour=bufferHour;
+                                assignAttendeeID=AttendeeID==0?3:AttendeeID;
+                                assignMinute=AllocateMin;
+                            }else{
+                                bufferMinute = bufferMinute + 5;
+                                if(bufferMinute==60){
+                                    bufferMinute=0;
+                                    bufferHour=(bufferHour+1);
+                                    break;
+                                }
                             }
-                        }
+                        } while (assignMinute==undefined);
                     }else{
                         bufferHour= bufferHour+1;  
                     }
                 }else{
                     assignHour=bufferHour;
                     assignAttendeeID=1;
-                    assignMinute=0;
+                    assignMinute=bufferMinute;
                 }
-                console.log('teste');
-            } while (assignHour==0 && bufferHour<17);
-            
+            } while (assignHour==0 && bufferHour<18);
         }else{
             assignHour=bufferHour;
             assignAttendeeID=1;
-            assignMinute=0;
+            assignMinute=bufferMinute;
         }
-
         if(assignHour!=0){
             var insert_data = {
                 'ClientName': request.ClientName,
